@@ -1,0 +1,6 @@
+module Pods_SimpleVote {
+  umbrella header "Pods-SimpleVote-umbrella.h"
+
+  export *
+  module * { export * }
+}
