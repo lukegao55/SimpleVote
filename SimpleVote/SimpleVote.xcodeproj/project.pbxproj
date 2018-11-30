@@ -7,15 +7,37 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		402AEC55218E36AA0099E284 /* SVRootNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402AEC54218E36AA0099E284 /* SVRootNavigationController.swift */; };
+		402AEC58218E37280099E284 /* SVMainTabbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402AEC57218E37280099E284 /* SVMainTabbarController.swift */; };
+		402AEC5C218E3E810099E284 /* SVStartVotingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402AEC5B218E3E810099E284 /* SVStartVotingViewController.swift */; };
+		402AEC6B218E49950099E284 /* SVVoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402AEC6A218E49950099E284 /* SVVoteViewController.swift */; };
+		402AEC6E218E54850099E284 /* SVDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402AEC6D218E54850099E284 /* SVDevice.swift */; };
+		402AEC70218E55FD0099E284 /* SVVoteViewOptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402AEC6F218E55FD0099E284 /* SVVoteViewOptionTableViewCell.swift */; };
+		4061D39821977DED001B6F72 /* SVVoteViewTitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4061D39721977DED001B6F72 /* SVVoteViewTitleTableViewCell.swift */; };
+		4061D39A21977E04001B6F72 /* SVVoteViewDetailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4061D39921977E04001B6F72 /* SVVoteViewDetailsTableViewCell.swift */; };
 		4097A7A0217E36D500E6AEB3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4097A79F217E36D500E6AEB3 /* AppDelegate.swift */; };
 		4097A7A2217E36D500E6AEB3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4097A7A1217E36D500E6AEB3 /* ViewController.swift */; };
 		4097A7A5217E36D500E6AEB3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4097A7A3217E36D500E6AEB3 /* Main.storyboard */; };
 		4097A7A7217E36D500E6AEB3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4097A7A6217E36D500E6AEB3 /* Assets.xcassets */; };
 		4097A7AA217E36D500E6AEB3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4097A7A8217E36D500E6AEB3 /* LaunchScreen.storyboard */; };
+		40B9C73421A1FB6C005D2551 /* SVVotePrepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B9C73321A1FB6C005D2551 /* SVVotePrepViewController.swift */; };
+		40B9C73621A21E14005D2551 /* SVVoteSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B9C73521A21E14005D2551 /* SVVoteSearchViewController.swift */; };
+		40B9C75721A88D57005D2551 /* SVBLECentralManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B9C75621A88D57005D2551 /* SVBLECentralManager.swift */; };
+		40B9C75921A88D9A005D2551 /* SVBLEPeripheralManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B9C75821A88D9A005D2551 /* SVBLEPeripheralManager.swift */; };
+		40B9C75B21AA384E005D2551 /* SVVoteResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B9C75A21AA384E005D2551 /* SVVoteResultViewController.swift */; };
+		40B9C75D21AB2B26005D2551 /* SVVoteResultViewResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B9C75C21AB2B26005D2551 /* SVVoteResultViewResultTableViewCell.swift */; };
 		6FC3187B3972A7E6705C4D4E /* libPods-SimpleVote.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E6964864C7E4C41575685AF2 /* libPods-SimpleVote.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		402AEC54218E36AA0099E284 /* SVRootNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVRootNavigationController.swift; sourceTree = "<group>"; };
+		402AEC57218E37280099E284 /* SVMainTabbarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVMainTabbarController.swift; sourceTree = "<group>"; };
+		402AEC5B218E3E810099E284 /* SVStartVotingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVStartVotingViewController.swift; sourceTree = "<group>"; };
+		402AEC6A218E49950099E284 /* SVVoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVVoteViewController.swift; sourceTree = "<group>"; };
+		402AEC6D218E54850099E284 /* SVDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVDevice.swift; sourceTree = "<group>"; };
+		402AEC6F218E55FD0099E284 /* SVVoteViewOptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVVoteViewOptionTableViewCell.swift; sourceTree = "<group>"; };
+		4061D39721977DED001B6F72 /* SVVoteViewTitleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVVoteViewTitleTableViewCell.swift; sourceTree = "<group>"; };
+		4061D39921977E04001B6F72 /* SVVoteViewDetailsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVVoteViewDetailsTableViewCell.swift; sourceTree = "<group>"; };
 		4097A79C217E36D500E6AEB3 /* SimpleVote.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleVote.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4097A79F217E36D500E6AEB3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4097A7A1217E36D500E6AEB3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -23,6 +45,12 @@
 		4097A7A6217E36D500E6AEB3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4097A7A9217E36D500E6AEB3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4097A7AB217E36D500E6AEB3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		40B9C73321A1FB6C005D2551 /* SVVotePrepViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVVotePrepViewController.swift; sourceTree = "<group>"; };
+		40B9C73521A21E14005D2551 /* SVVoteSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVVoteSearchViewController.swift; sourceTree = "<group>"; };
+		40B9C75621A88D57005D2551 /* SVBLECentralManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVBLECentralManager.swift; sourceTree = "<group>"; };
+		40B9C75821A88D9A005D2551 /* SVBLEPeripheralManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVBLEPeripheralManager.swift; sourceTree = "<group>"; };
+		40B9C75A21AA384E005D2551 /* SVVoteResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVVoteResultViewController.swift; sourceTree = "<group>"; };
+		40B9C75C21AB2B26005D2551 /* SVVoteResultViewResultTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVVoteResultViewResultTableViewCell.swift; sourceTree = "<group>"; };
 		59B226BF5493DC1669E49586 /* Pods-SimpleVote.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleVote.release.xcconfig"; path = "Pods/Target Support Files/Pods-SimpleVote/Pods-SimpleVote.release.xcconfig"; sourceTree = "<group>"; };
 		E6964864C7E4C41575685AF2 /* libPods-SimpleVote.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SimpleVote.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE5AD6798F5041BC633B0869 /* Pods-SimpleVote.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleVote.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SimpleVote/Pods-SimpleVote.debug.xcconfig"; sourceTree = "<group>"; };
@@ -40,6 +68,72 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		402AEC56218E370E0099E284 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				402AEC5A218E3E5A0099E284 /* ViewController */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		402AEC59218E37380099E284 /* CommonUIs */ = {
+			isa = PBXGroup;
+			children = (
+				402AEC54218E36AA0099E284 /* SVRootNavigationController.swift */,
+			);
+			path = CommonUIs;
+			sourceTree = "<group>";
+		};
+		402AEC5A218E3E5A0099E284 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				402AEC57218E37280099E284 /* SVMainTabbarController.swift */,
+				402AEC5B218E3E810099E284 /* SVStartVotingViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		402AEC68218E49510099E284 /* Vote */ = {
+			isa = PBXGroup;
+			children = (
+				402AEC71218E56040099E284 /* View */,
+				402AEC69218E49740099E284 /* ViewContoller */,
+			);
+			path = Vote;
+			sourceTree = "<group>";
+		};
+		402AEC69218E49740099E284 /* ViewContoller */ = {
+			isa = PBXGroup;
+			children = (
+				402AEC6A218E49950099E284 /* SVVoteViewController.swift */,
+				40B9C73521A21E14005D2551 /* SVVoteSearchViewController.swift */,
+				40B9C73321A1FB6C005D2551 /* SVVotePrepViewController.swift */,
+				40B9C75A21AA384E005D2551 /* SVVoteResultViewController.swift */,
+			);
+			path = ViewContoller;
+			sourceTree = "<group>";
+		};
+		402AEC6C218E54180099E284 /* UTLs */ = {
+			isa = PBXGroup;
+			children = (
+				402AEC6D218E54850099E284 /* SVDevice.swift */,
+				40B9C75621A88D57005D2551 /* SVBLECentralManager.swift */,
+				40B9C75821A88D9A005D2551 /* SVBLEPeripheralManager.swift */,
+			);
+			path = UTLs;
+			sourceTree = "<group>";
+		};
+		402AEC71218E56040099E284 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				4061D39721977DED001B6F72 /* SVVoteViewTitleTableViewCell.swift */,
+				4061D39921977E04001B6F72 /* SVVoteViewDetailsTableViewCell.swift */,
+				402AEC6F218E55FD0099E284 /* SVVoteViewOptionTableViewCell.swift */,
+				40B9C75C21AB2B26005D2551 /* SVVoteResultViewResultTableViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		4097A793217E36D500E6AEB3 = {
 			isa = PBXGroup;
 			children = (
@@ -61,6 +155,10 @@
 		4097A79E217E36D500E6AEB3 /* SimpleVote */ = {
 			isa = PBXGroup;
 			children = (
+				402AEC6C218E54180099E284 /* UTLs */,
+				402AEC59218E37380099E284 /* CommonUIs */,
+				402AEC56218E370E0099E284 /* Main */,
+				402AEC68218E49510099E284 /* Vote */,
 				4097A79F217E36D500E6AEB3 /* AppDelegate.swift */,
 				4097A7A1217E36D500E6AEB3 /* ViewController.swift */,
 				4097A7A3217E36D500E6AEB3 /* Main.storyboard */,
@@ -186,7 +284,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				4097A7A2217E36D500E6AEB3 /* ViewController.swift in Sources */,
+				402AEC55218E36AA0099E284 /* SVRootNavigationController.swift in Sources */,
+				40B9C75B21AA384E005D2551 /* SVVoteResultViewController.swift in Sources */,
+				402AEC6E218E54850099E284 /* SVDevice.swift in Sources */,
+				402AEC5C218E3E810099E284 /* SVStartVotingViewController.swift in Sources */,
+				402AEC70218E55FD0099E284 /* SVVoteViewOptionTableViewCell.swift in Sources */,
 				4097A7A0217E36D500E6AEB3 /* AppDelegate.swift in Sources */,
+				40B9C75D21AB2B26005D2551 /* SVVoteResultViewResultTableViewCell.swift in Sources */,
+				40B9C73421A1FB6C005D2551 /* SVVotePrepViewController.swift in Sources */,
+				40B9C75721A88D57005D2551 /* SVBLECentralManager.swift in Sources */,
+				40B9C75921A88D9A005D2551 /* SVBLEPeripheralManager.swift in Sources */,
+				4061D39A21977E04001B6F72 /* SVVoteViewDetailsTableViewCell.swift in Sources */,
+				4061D39821977DED001B6F72 /* SVVoteViewTitleTableViewCell.swift in Sources */,
+				402AEC58218E37280099E284 /* SVMainTabbarController.swift in Sources */,
+				40B9C73621A21E14005D2551 /* SVVoteSearchViewController.swift in Sources */,
+				402AEC6B218E49950099E284 /* SVVoteViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -336,6 +448,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = TK9372U7N9;
 				INFOPLIST_FILE = SimpleVote/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -355,6 +468,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = TK9372U7N9;
 				INFOPLIST_FILE = SimpleVote/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
