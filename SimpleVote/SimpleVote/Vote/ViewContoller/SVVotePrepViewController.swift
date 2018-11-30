@@ -26,6 +26,14 @@ class SVVotePrepViewController: UIViewController, UITableViewDelegate, UITableVi
         return tableView
     }()
     
+    lazy var searchBtn: UIButton = {
+        let btn = UIButton()
+        btn.setTitle("Search", for: .normal)
+        btn.backgroundColor = .blue
+        btn.addTarget(self, action: #selector(searchBtnPressed), for: .touchUpInside)
+        return btn
+    }()
+    
     lazy var connectBtn: UIButton = {
         let btn = UIButton()
         btn.setTitle("Connect", for: .normal)
@@ -38,7 +46,6 @@ class SVVotePrepViewController: UIViewController, UITableViewDelegate, UITableVi
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupUI()
-        self.addKVO()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -57,13 +64,21 @@ class SVVotePrepViewController: UIViewController, UITableViewDelegate, UITableVi
         
         // Subviews
         self.view.addSubview(self.deviceTableView)
+        self.view.addSubview(self.searchBtn)
         self.view.addSubview(self.connectBtn)
         
         // Layout
         self.deviceTableView.snp.makeConstraints { (make) in
             make.top.equalTo(self.view).offset(SVDevice.navigationBarOffset())
             make.left.right.equalTo(self.view)
+            make.bottom.equalTo(self.searchBtn.snp.top).offset(-20)
+        }
+        
+        self.searchBtn.snp.makeConstraints { (make) in
             make.bottom.equalTo(self.connectBtn.snp.top).offset(-20)
+            make.left.equalTo(self.deviceTableView).offset(20)
+            make.right.equalTo(self.deviceTableView).offset(-20)
+            make.height.equalTo(30)
         }
         
         self.connectBtn.snp.makeConstraints { (make) in
@@ -71,6 +86,16 @@ class SVVotePrepViewController: UIViewController, UITableViewDelegate, UITableVi
             make.left.equalTo(self.deviceTableView).offset(20)
             make.right.equalTo(self.deviceTableView).offset(-20)
             make.height.equalTo(30)
+        }
+    }
+    
+    @objc func searchBtnPressed() {
+        if !SVBLECentralManager.sharedManager.isScanning() {
+            SVBLECentralManager.sharedManager.scan()
+            self.searchBtn.setTitle("Stop", for: .normal)
+        } else {
+            SVBLECentralManager.sharedManager.stopScan()
+            self.searchBtn.setTitle("Search", for: .normal)
         }
     }
     
@@ -83,11 +108,6 @@ class SVVotePrepViewController: UIViewController, UITableViewDelegate, UITableVi
                 }
             SVBLECentralManager.sharedManager.connect(peripherals)
         }
-    }
-    
-    // MARK: KVO
-    func addKVO() {
-        SVBLECentralManager.sharedManager.addObserver(self, forKeyPath: "deviceNames", options: [.initial, .new], context: nil)
     }
     
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {

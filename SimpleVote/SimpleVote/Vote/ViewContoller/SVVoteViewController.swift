@@ -85,10 +85,9 @@ class SVVoteViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if self.type == .typeCreate {
-            self.navigationController?.navigationBar.isHidden = false
-        } else {
-            self.navigationController?.navigationBar.isHidden = true
+        self.navigationController?.navigationBar.isHidden = false
+        if self.type == .typeVote {
+            self.navigationItem.setHidesBackButton(true, animated: false)
         }
         self.tabBarController?.tabBar.isHidden = true
         if self.deviceInfo == .central {

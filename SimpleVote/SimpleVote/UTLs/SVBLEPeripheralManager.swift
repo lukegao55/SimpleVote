@@ -29,7 +29,7 @@ class SVBLEPeripheralManager: NSObject, CBPeripheralManagerDelegate {
     var voteInfo = [0, 0, 0, 0]
     
     // user's selection
-    var selection = Int()
+    var selection : Int?
     
     // vote char and services
     var voteChar : CBMutableCharacteristic?
@@ -81,6 +81,15 @@ class SVBLEPeripheralManager: NSObject, CBPeripheralManagerDelegate {
             vc.deviceInfo = .peripheral
             self.currVC!.navigationController?.pushViewController(vc, animated: true)
         }
+    }
+    
+    func reset() {
+        self.voteDict = [:]
+        self.voteInfo = [0, 0, 0, 0]
+        self.selection = nil
+        self.currVC = nil
+        self.central = nil
+        self.isConfigured = false
     }
     
     // MARK: private method

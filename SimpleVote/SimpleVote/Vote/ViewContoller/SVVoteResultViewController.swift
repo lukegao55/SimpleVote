@@ -76,7 +76,7 @@ class SVVoteResultViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.navigationController?.navigationController?.isNavigationBarHidden = true
+        self.navigationController?.navigationBar.isHidden = true
         if self.deviceInfo == .central {
             SVBLECentralManager.sharedManager.currVC = self
             if SVBLECentralManager.sharedManager.receiveVotes == SVBLECentralManager.sharedManager.connectedDevices.count {
@@ -156,6 +156,11 @@ class SVVoteResultViewController: UIViewController, UITableViewDelegate, UITable
                 SVBLECentralManager.sharedManager.boardcastResult()
             }
         } else {
+            if self.deviceInfo == .central {
+                SVBLECentralManager.sharedManager.reset()
+            } else if self.deviceInfo == .peripheral {
+                SVBLEPeripheralManager.sharedManager.reset()
+            }
             self.navigationController?.popToRootViewController(animated: true)
         }
     }

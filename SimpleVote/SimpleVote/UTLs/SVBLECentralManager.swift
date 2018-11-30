@@ -27,7 +27,7 @@ class SVBLECentralManager: NSObject, CBCentralManagerDelegate, CBPeripheralDeleg
     
     // current peripheral devices discovered & name array
     var devicesDict : [String : CBPeripheral] = [:]
-    @objc dynamic var deviceNames : [String] = []
+    var deviceNames : [String] = []
     
     // vote info
     var voteInfo = [0, 0, 0, 0]
@@ -60,6 +60,10 @@ class SVBLECentralManager: NSObject, CBCentralManagerDelegate, CBPeripheralDeleg
     }
     
     // MARK: interface API
+    func scan() {
+        self.centralManager.scanForPeripherals(withServices:nil, options: nil)
+    }
+    
     func isScanning() -> Bool {
         return self.centralManager.isScanning
     }
@@ -72,8 +76,20 @@ class SVBLECentralManager: NSObject, CBCentralManagerDelegate, CBPeripheralDeleg
         self.requiredDevNum = peripherals.count
         self.unavailableDevices = []
         for peripheral in peripherals {
+            self.requiredCharNum = 3
             self.centralManager.connect(peripheral, options: nil)
         }
+    }
+    
+    func reset() {
+        self.disconnectAll()
+        self.devicesDict = [:]
+        self.deviceNames = []
+        self.voteInfo = [0, 0, 0, 0]
+        self.currVC = nil
+        self.connectedDevices = []
+        self.unavailableDevices = []
+        self.receiveVotes = 0
     }
     
     func stopScan() {
@@ -122,10 +138,16 @@ class SVBLECentralManager: NSObject, CBCentralManagerDelegate, CBPeripheralDeleg
         }
     }
     
+    private func disconnectAll() {
+        for peripheral in self.connectedDevices {
+            self.centralManager.cancelPeripheralConnection(peripheral)
+        }
+        
+    }
+    
     // MARK: CBCentralManager Delegate
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
         if central.state == .poweredOn {
-            self.centralManager.scanForPeripherals(withServices:nil, options: nil)
             print("Bluetooth: ON")
         } else if central.state == .poweredOff {
             print("Bluetooth: OFF")
@@ -138,6 +160,9 @@ class SVBLECentralManager: NSObject, CBCentralManagerDelegate, CBPeripheralDeleg
         guard let name = peripheral.name else {return}
         self.devicesDict[name] = peripheral
         self.deviceNames = Array(devicesDict.keys)
+        if let prepVC = self.currVC as? SVVotePrepViewController {
+            prepVC.deviceTableView.reloadData()
+        }
     }
     
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
