@@ -15,6 +15,7 @@ class SVMainTabbarController: UITabBarController {
         naviVC.tabBarItem.title = "Main"
         return naviVC
     }()
+    
     let secondVC : UIViewController = {
         let vc = UIViewController()
         vc.view.backgroundColor = .white

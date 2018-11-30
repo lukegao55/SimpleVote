@@ -41,14 +41,14 @@ class SVBLECentralManager: NSObject, CBCentralManagerDelegate, CBPeripheralDeleg
     // required number of devices
     var requiredDevNum : Int?
     
-    // required number of char
-    var requiredCharNum = 3
+    // vote result char dict
+    var voteResultCharDict : [String : CBCharacteristic] = [:]
     
-    // vote result char
-    var voteResultChar : CBCharacteristic?
+    // device set
+    var deviceSet = Set<CBPeripheral>()
     
-    // unavailable devices
-    var unavailableDevices : [CBPeripheral] = []
+    // counter of connected char for each device
+    var deviceCharCountDict : [String : Int] = [:]
     
     // number of vote received
     var receiveVotes = 0
@@ -61,7 +61,7 @@ class SVBLECentralManager: NSObject, CBCentralManagerDelegate, CBPeripheralDeleg
     
     // MARK: interface API
     func scan() {
-        self.centralManager.scanForPeripherals(withServices:nil, options: nil)
+        self.centralManager.scanForPeripherals(withServices:[self.voteServiceUUID], options: nil)
     }
     
     func isScanning() -> Bool {
@@ -74,9 +74,10 @@ class SVBLECentralManager: NSObject, CBCentralManagerDelegate, CBPeripheralDeleg
     
     func connect(_ peripherals : [CBPeripheral]) {
         self.requiredDevNum = peripherals.count
-        self.unavailableDevices = []
+        self.deviceSet = Set()
+        self.deviceCharCountDict = [:]
         for peripheral in peripherals {
-            self.requiredCharNum = 3
+            self.deviceSet.insert(peripheral)
             self.centralManager.connect(peripheral, options: nil)
         }
     }
@@ -87,8 +88,9 @@ class SVBLECentralManager: NSObject, CBCentralManagerDelegate, CBPeripheralDeleg
         self.deviceNames = []
         self.voteInfo = [0, 0, 0, 0]
         self.currVC = nil
+        self.deviceSet = Set()
+        self.deviceCharCountDict = [:]
         self.connectedDevices = []
-        self.unavailableDevices = []
         self.receiveVotes = 0
     }
     
@@ -105,7 +107,8 @@ class SVBLECentralManager: NSObject, CBCentralManagerDelegate, CBPeripheralDeleg
         }
         if resultData != nil {
             for peripheral in self.connectedDevices {
-                peripheral.writeValue(resultData!, for: self.voteResultChar! , type: .withResponse)
+                guard let char = self.voteResultCharDict[peripheral.name!] else {return}
+                peripheral.writeValue(resultData!, for: char, type: .withResponse)
             }
         }
     }
@@ -120,7 +123,8 @@ class SVBLECentralManager: NSObject, CBCentralManagerDelegate, CBPeripheralDeleg
         }
         if resultData != nil {
             for peripheral in self.connectedDevices {
-                peripheral.writeValue(resultData!, for: self.voteResultChar! , type: .withResponse)
+                guard let char = self.voteResultCharDict[peripheral.name!] else {return}
+                peripheral.writeValue(resultData!, for: char, type: .withResponse)
             }
         }
         guard self.currVC != nil else {return}
@@ -142,7 +146,6 @@ class SVBLECentralManager: NSObject, CBCentralManagerDelegate, CBPeripheralDeleg
         for peripheral in self.connectedDevices {
             self.centralManager.cancelPeripheralConnection(peripheral)
         }
-        
     }
     
     // MARK: CBCentralManager Delegate
@@ -157,6 +160,9 @@ class SVBLECentralManager: NSObject, CBCentralManagerDelegate, CBPeripheralDeleg
     }
     
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
+        if let data = advertisementData[CBAdvertisementDataServiceUUIDsKey] {
+            print(data)
+        }
         guard let name = peripheral.name else {return}
         self.devicesDict[name] = peripheral
         self.deviceNames = Array(devicesDict.keys)
@@ -174,34 +180,26 @@ class SVBLECentralManager: NSObject, CBCentralManagerDelegate, CBPeripheralDeleg
     // MARK: CBPeripheral Delegate
     func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
         guard let services = peripheral.services else {return}
-        var found = false
         for service in services {
             if service.uuid == self.voteServiceUUID {
                 print("Vote service discovered!")
-                found = true
                 peripheral.discoverCharacteristics([self.voteCharUUID, self.voteInfoCharUUID, self.voteResultCharUUID], for:service)
+                self.connectedDevices.append(peripheral)
+                self.deviceCharCountDict[peripheral.name!] = 0
             }
-        }
-        if !found {
-            self.unavailableDevices.append(peripheral)
-            self.centralManager.cancelPeripheralConnection(peripheral)
         }
     }
     
     func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService, error: Error?) {
         guard let chars = service.characteristics else {return}
-        var count = 0
         for char in chars {
             if char.uuid == self.voteCharUUID {
                 peripheral.setNotifyValue(true, for: char)
-                peripheral.readValue(for: char)
                 print("vote char is ready!")
-                count += 1
             }
             if char.uuid == self.voteInfoCharUUID {
                 peripheral.setNotifyValue(true, for: char)
                 print("voteInfo char is ready!")
-                count += 1
                 do {
                     let data = try NSKeyedArchiver.archivedData(withRootObject: self.voteDict, requiringSecureCoding: false)
                     peripheral.writeValue(data, for: char, type: .withResponse)
@@ -211,14 +209,9 @@ class SVBLECentralManager: NSObject, CBCentralManagerDelegate, CBPeripheralDeleg
             }
             if char.uuid == self.voteResultCharUUID {
                 peripheral.setNotifyValue(true, for: char)
-                self.voteResultChar = char
+                self.voteResultCharDict[peripheral.name!] = char
                 print("voteResult char is ready!")
-                count += 1
             }
-        }
-        if count < 3 {
-            self.unavailableDevices.append(peripheral)
-            self.centralManager.cancelPeripheralConnection(peripheral)
         }
     }
     
@@ -226,24 +219,24 @@ class SVBLECentralManager: NSObject, CBCentralManagerDelegate, CBPeripheralDeleg
         if error == nil {
             if characteristic.uuid == self.voteCharUUID {
                 print("Subscribe to vote char successfully!")
-                self.requiredCharNum -= 1
+                let val = self.deviceCharCountDict[peripheral.name!]
+                self.deviceCharCountDict.updateValue(val! + 1, forKey: peripheral.name!)
             }
             if characteristic.uuid == self.voteInfoCharUUID {
                 print("Subscribe to voteDict char successfully!")
-                self.requiredCharNum -= 1
+                let val = self.deviceCharCountDict[peripheral.name!]
+                self.deviceCharCountDict.updateValue(val! + 1, forKey: peripheral.name!)
             }
             if characteristic.uuid == self.voteResultCharUUID {
                 print("Subscribe to voteResult char successfully!")
-                self.requiredCharNum -= 1
+                let val = self.deviceCharCountDict[peripheral.name!]
+                self.deviceCharCountDict.updateValue(val! + 1, forKey: peripheral.name!)
             }
-            if self.requiredCharNum == 0 {
-                self.requiredDevNum? -= 1
-                self.connectedDevices.append(peripheral)
+            if self.deviceCharCountDict[peripheral.name!] == 3 {
+                self.deviceSet.remove(peripheral)
             }
-            if self.requiredDevNum == 0 {
+            if self.deviceSet.count == 0 {
                 self.startVote()
-            } else if self.unavailableDevices.count > 0 {
-                print("aaaaaa")
             }
         }
     }

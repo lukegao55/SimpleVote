@@ -46,6 +46,10 @@ class SVBLEPeripheralManager: NSObject, CBPeripheralManagerDelegate {
     // configured flag
     var isConfigured = false
     
+    
+    // connect char count
+    var charCount = 0
+    
     // MARK: life cycle
     private override init() {
         super.init()
@@ -67,7 +71,7 @@ class SVBLEPeripheralManager: NSObject, CBPeripheralManagerDelegate {
                                                       value: nil,
                                                       permissions: [.readable, .writeable])
         self.voteService = CBMutableService(type: self.voteServiceUUID,primary: true)
-        voteService!.characteristics = [self.voteChar!, self.dictChar!, self.voteResultChar!]
+        voteService!.characteristics = [self.voteResultChar!, self.voteChar!, self.dictChar!]
         self.peripheralManager.add(voteService!)
     }
     
@@ -89,7 +93,7 @@ class SVBLEPeripheralManager: NSObject, CBPeripheralManagerDelegate {
         self.selection = nil
         self.currVC = nil
         self.central = nil
-        self.isConfigured = false
+        self.charCount = 0
     }
     
     // MARK: private method
@@ -114,6 +118,7 @@ class SVBLEPeripheralManager: NSObject, CBPeripheralManagerDelegate {
             print("OK")
             SVBLEPeripheralManager.sharedManager.configServiceAndCharacteristic()
         } else if peripheral.state == .poweredOff {
+            self.isConfigured = false
             let alert = UIAlertController(title: "Bluetooth", message: "Please turn on bluetooth", preferredStyle: .alert)
             let okAction = UIAlertAction(title: "Settings", style: .default) { (action) in
                 if let url = URL(string: UIApplication.openSettingsURLString){
@@ -129,6 +134,7 @@ class SVBLEPeripheralManager: NSObject, CBPeripheralManagerDelegate {
             alert.addAction(cancelAction)
             self.currVC?.present(alert, animated: true, completion: nil)
         } else {
+            self.isConfigured = false
             print("Something went wrong")
         }
     }
@@ -137,24 +143,36 @@ class SVBLEPeripheralManager: NSObject, CBPeripheralManagerDelegate {
         self.central = central
         if characteristic == self.voteChar {
             print("vote char is connected.")
+            self.charCount += 1
         }
         if characteristic == self.dictChar {
             print("voteInfo char is connected.")
+            self.charCount += 1
         }
         if characteristic == self.voteResultChar {
             print("voteResult char is connected")
+            self.charCount += 1
         }
     }
     
     func peripheralManager(_ peripheral: CBPeripheralManager, didAdd service: CBService, error: Error?) {
-        print("Add service successfully")
-        self.peripheralManager.startAdvertising([CBAdvertisementDataServiceUUIDsKey:self.voteServiceUUID])
-        self.isConfigured = true
+        if error == nil {
+            print("Add service successfully")
+            self.peripheralManager.startAdvertising([CBAdvertisementDataServiceUUIDsKey:[self.voteServiceUUID]])
+            self.isConfigured = true
+        } else {
+            print("Unable to add service")
+        }
     }
     
     func peripheralManagerDidStartAdvertising(_ peripheral: CBPeripheralManager, error: Error?) {
-        guard let vc = self.currVC as! SVVoteSearchViewController? else {return}
-        vc.statusLabel.text = "Configured!\nPlease add me in the central device."
+        if error == nil {
+            guard let vc = self.currVC as! SVVoteSearchViewController? else {return}
+            vc.statusLabel.text = "Configured!\nPlease add me in the central device."
+        } else {
+            print(error!)
+            print("Unable to advertise")
+        }
     }
     
     func peripheralManager(_ peripheral: CBPeripheralManager, didReceiveWrite requests: [CBATTRequest]) {

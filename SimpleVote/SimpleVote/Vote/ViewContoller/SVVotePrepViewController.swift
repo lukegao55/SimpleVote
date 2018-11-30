@@ -93,9 +93,11 @@ class SVVotePrepViewController: UIViewController, UITableViewDelegate, UITableVi
         if !SVBLECentralManager.sharedManager.isScanning() {
             SVBLECentralManager.sharedManager.scan()
             self.searchBtn.setTitle("Stop", for: .normal)
+            self.deviceTableView.isUserInteractionEnabled = false
         } else {
             SVBLECentralManager.sharedManager.stopScan()
             self.searchBtn.setTitle("Search", for: .normal)
+            self.deviceTableView.isUserInteractionEnabled = true
         }
     }
     
