@@ -29,7 +29,8 @@ class SVVotePrepViewController: UIViewController, UITableViewDelegate, UITableVi
     lazy var searchBtn: UIButton = {
         let btn = UIButton()
         btn.setTitle("Search", for: .normal)
-        btn.backgroundColor = .blue
+        btn.backgroundColor = UIColor(red: 67/255.0, green: 130/255.0, blue: 203/255.0, alpha: 1)
+        btn.layer.cornerRadius = 10
         btn.addTarget(self, action: #selector(searchBtnPressed), for: .touchUpInside)
         return btn
     }()
@@ -37,7 +38,8 @@ class SVVotePrepViewController: UIViewController, UITableViewDelegate, UITableVi
     lazy var connectBtn: UIButton = {
         let btn = UIButton()
         btn.setTitle("Connect", for: .normal)
-        btn.backgroundColor = .blue
+        btn.backgroundColor = UIColor(red: 67/255.0, green: 130/255.0, blue: 203/255.0, alpha: 1)
+        btn.layer.cornerRadius = 10
         btn.addTarget(self, action: #selector(connectBtnPressed), for: .touchUpInside)
         return btn
     }()

@@ -14,20 +14,23 @@ class SVStartVotingViewController: UIViewController {
     var titleLabel:UILabel = {
         let label = UILabel()
         label.text = "Simple Bluetooth Voting"
-        label.textColor = .black
+        label.font = UIFont(name: "Baskerville-SemiBoldItalic", size: 24)
+        label.textColor = UIColor(red: 67/255.0, green: 130/255.0, blue: 203/255.0, alpha: 1)
         return label
     }()
     
     var createBtn:UIButton = {
         let btn = UIButton(type: .custom)
-        btn.setImage(UIImage.init(named: "newVoting.png"), for: .normal)
+        btn.setImage(UIImage.init(named: "newVoting.png")?.withRenderingMode(.alwaysTemplate), for: .normal)
+        btn.tintColor = UIColor(red: 67/255.0, green: 130/255.0, blue: 203/255.0, alpha: 1)
         btn.addTarget(self, action: #selector(createBtnPressed), for: .touchUpInside)
         return btn
     }()
     
     var searchBtn:UIButton = {
         let btn = UIButton(type: .custom)
-        btn.setImage(UIImage.init(named: "searchHost.png"), for: .normal)
+        btn.setImage(UIImage.init(named: "search.png")?.withRenderingMode(.alwaysTemplate), for: .normal)
+        btn.tintColor = UIColor(red: 67/255.0, green: 130/255.0, blue: 203/255.0, alpha: 1)
         btn.addTarget(self, action: #selector(searchBtnPressed), for: .touchUpInside)
         return btn
     }()
@@ -36,6 +39,7 @@ class SVStartVotingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupUI()
+        
         
     }
     
@@ -60,12 +64,12 @@ class SVStartVotingViewController: UIViewController {
         }
         self.createBtn.snp.makeConstraints { (make) in
             make.centerY.equalTo(self.view)
-            make.left.equalTo(self.view).offset(100)
+            make.left.equalTo(self.view).offset(80)
             //make.right.equalTo(self.view.snp.centerY).offset(-20)
         }
         self.searchBtn.snp.makeConstraints { (make) in
             make.centerY.equalTo(self.view)
-            make.right.equalTo(self.view).offset(-100)
+            make.right.equalTo(self.view).offset(-80)
             //make.left.equalTo(self.view.snp.centerY).offset(20)
         }
     }

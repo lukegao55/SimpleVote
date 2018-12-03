@@ -56,6 +56,8 @@ class SVVoteResultViewController: UIViewController, UITableViewDelegate, UITable
             btn.setTitle("End vote", for: .normal)
         }
         btn.setTitleColor(.black, for: .normal)
+        btn.backgroundColor = UIColor(red: 67/255.0, green: 130/255.0, blue: 203/255.0, alpha: 1)
+        btn.layer.cornerRadius = 10
         btn.addTarget(self, action: #selector(actionBtnPressed), for: .touchUpInside)
         return btn
     }()

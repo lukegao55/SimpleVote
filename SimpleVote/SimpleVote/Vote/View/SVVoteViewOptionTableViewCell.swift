@@ -53,7 +53,7 @@ class SVVoteViewOptionTableViewCell: UITableViewCell, UITextFieldDelegate {
             make.left.equalTo(self.optionTextLabel.snp.right).offset(20)
             make.right.equalTo(self.contentView).offset(-20)
             make.top.bottom.equalTo(self.contentView)
-            make.width.greaterThanOrEqualTo(50)
+            make.width.greaterThanOrEqualTo(40)
         }
     }
     

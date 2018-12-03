@@ -47,7 +47,8 @@ class SVVoteViewController: UIViewController, UITableViewDelegate, UITableViewDa
             title = "Vote"
         }
         btn.setTitle(title, for: .normal)
-        btn.backgroundColor = .blue
+        btn.backgroundColor = UIColor(red: 67/255.0, green: 130/255.0, blue: 203/255.0, alpha: 1)
+        btn.layer.cornerRadius = 10
         btn.addTarget(self, action: #selector(actionBtnPressed), for: .touchUpInside)
         return btn
     }()
@@ -150,9 +151,9 @@ class SVVoteViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     @objc func actionBtnPressed() {
         if self.type == .typeCreate {
-            let vc = SVVotePrepViewController()
             let voteDict : [String : Any] = ["title" : self.voteTitle, "detail" : self.voteDetail, "options" : self.voteOptions]
-            SVBLECentralManager.sharedManager.voteDict = voteDict
+            let vc = SVVotePrepViewController()
+            SVBLECentralManager.sharedManager.voteDict = voteDict as [String : Any]
             self.navigationController?.pushViewController(vc, animated: true)
         } else if self.type == .typeVote {
             if self.selection != nil {
@@ -173,6 +174,7 @@ class SVVoteViewController: UIViewController, UITableViewDelegate, UITableViewDa
         return 3
     }
     
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0:

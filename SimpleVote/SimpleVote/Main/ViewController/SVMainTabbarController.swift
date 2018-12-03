@@ -12,14 +12,14 @@ class SVMainTabbarController: UITabBarController {
     let firstVC : SVRootNavigationController = {
         let vc = SVStartVotingViewController()
         let naviVC = SVRootNavigationController(rootViewController: vc)
-        naviVC.tabBarItem.title = "Main"
+        naviVC.tabBarItem = UITabBarItem(title: nil, image: UIImage(named: "main"), selectedImage: UIImage(named: "main"))
         return naviVC
     }()
     
     let secondVC : UIViewController = {
         let vc = UIViewController()
         vc.view.backgroundColor = .white
-        vc.tabBarItem.title = "About"
+        vc.tabBarItem = UITabBarItem(title: nil, image: UIImage(named: "about"), selectedImage: UIImage(named: "about"))
         return vc
     }()
 
@@ -27,5 +27,7 @@ class SVMainTabbarController: UITabBarController {
         super.viewDidLoad()
         self.addChild(self.firstVC)
         self.addChild(self.secondVC)
+   
     }
 }
+
