@@ -40,6 +40,7 @@ class SVVotePrepViewController: UIViewController, UITableViewDelegate, UITableVi
         btn.setTitle("Connect", for: .normal)
         btn.backgroundColor = UIColor(red: 67/255.0, green: 130/255.0, blue: 203/255.0, alpha: 1)
         btn.layer.cornerRadius = 10
+        btn.isUserInteractionEnabled = true
         btn.addTarget(self, action: #selector(connectBtnPressed), for: .touchUpInside)
         return btn
     }()
@@ -106,6 +107,8 @@ class SVVotePrepViewController: UIViewController, UITableViewDelegate, UITableVi
     @objc func connectBtnPressed() {
         if selectedIdx.count != 0 {
             var peripherals : [CBPeripheral] = []
+            self.connectBtn.setTitle("Connecting...", for: .normal)
+            self.connectBtn.isUserInteractionEnabled = false
             for idx in self.selectedIdx {
                 guard let peripheral = SVBLECentralManager.sharedManager.devicesDict[SVBLECentralManager.sharedManager.deviceNames[idx]] else {return}
                     peripherals.append(peripheral)

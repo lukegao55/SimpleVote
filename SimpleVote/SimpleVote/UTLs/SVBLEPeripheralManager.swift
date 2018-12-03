@@ -150,6 +150,8 @@ class SVBLEPeripheralManager: NSObject, CBPeripheralManagerDelegate {
             self.charCount += 1
         }
         if characteristic == self.voteResultChar {
+            guard let vc = self.currVC as! SVVoteSearchViewController? else {return}
+            vc.statusLabel.text = "Connected! Initializing..."
             print("voteResult char is connected")
             self.charCount += 1
         }

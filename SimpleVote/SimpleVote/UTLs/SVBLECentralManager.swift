@@ -235,9 +235,6 @@ class SVBLECentralManager: NSObject, CBCentralManagerDelegate, CBPeripheralDeleg
             if self.deviceCharCountDict[peripheral.name!] == 3 {
                 self.deviceSet.remove(peripheral)
             }
-            if self.deviceSet.count == 0 {
-                self.startVote()
-            }
         }
     }
     
@@ -252,6 +249,14 @@ class SVBLECentralManager: NSObject, CBCentralManagerDelegate, CBPeripheralDeleg
             self.receiveVotes += 1
             if self.receiveVotes == self.connectedDevices.count {
                 self.finishVote()
+            }
+        }
+    }
+    
+    func peripheral(_ peripheral: CBPeripheral, didWriteValueFor characteristic: CBCharacteristic, error: Error?) {
+        if characteristic.uuid.isEqual(voteInfoCharUUID) {
+            if self.deviceSet.count == 0 {
+                self.startVote()
             }
         }
     }

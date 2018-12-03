@@ -13,7 +13,7 @@ class SVStartVotingViewController: UIViewController {
     
     var titleLabel : UILabel = {
         let label = UILabel()
-        label.text = "Simple Bluetooth Voting"
+        label.text = "Simple Vote"
         label.font = UIFont(name: "Baskerville-SemiBoldItalic", size: 24)
         label.textColor = UIColor(red: 67/255.0, green: 130/255.0, blue: 203/255.0, alpha: 1)
         return label
