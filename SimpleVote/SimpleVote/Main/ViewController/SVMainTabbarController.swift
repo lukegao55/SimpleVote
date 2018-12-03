@@ -17,7 +17,7 @@ class SVMainTabbarController: UITabBarController {
     }()
     
     let secondVC : UIViewController = {
-        let vc = UIViewController()
+        let vc = SVAboutViewController()
         vc.view.backgroundColor = .white
         vc.tabBarItem = UITabBarItem(title: nil, image: UIImage(named: "about"), selectedImage: UIImage(named: "about"))
         return vc

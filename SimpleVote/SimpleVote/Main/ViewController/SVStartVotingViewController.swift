@@ -11,7 +11,7 @@ import SnapKit
 
 class SVStartVotingViewController: UIViewController {
     
-    var titleLabel:UILabel = {
+    var titleLabel : UILabel = {
         let label = UILabel()
         label.text = "Simple Bluetooth Voting"
         label.font = UIFont(name: "Baskerville-SemiBoldItalic", size: 24)
@@ -19,7 +19,7 @@ class SVStartVotingViewController: UIViewController {
         return label
     }()
     
-    var createBtn:UIButton = {
+    var createBtn : UIButton = {
         let btn = UIButton(type: .custom)
         btn.setImage(UIImage.init(named: "newVoting.png")?.withRenderingMode(.alwaysTemplate), for: .normal)
         btn.tintColor = UIColor(red: 67/255.0, green: 130/255.0, blue: 203/255.0, alpha: 1)
@@ -27,7 +27,7 @@ class SVStartVotingViewController: UIViewController {
         return btn
     }()
     
-    var searchBtn:UIButton = {
+    var searchBtn : UIButton = {
         let btn = UIButton(type: .custom)
         btn.setImage(UIImage.init(named: "search.png")?.withRenderingMode(.alwaysTemplate), for: .normal)
         btn.tintColor = UIColor(red: 67/255.0, green: 130/255.0, blue: 203/255.0, alpha: 1)

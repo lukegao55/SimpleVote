@@ -26,6 +26,7 @@
 		40B9C75921A88D9A005D2551 /* SVBLEPeripheralManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B9C75821A88D9A005D2551 /* SVBLEPeripheralManager.swift */; };
 		40B9C75B21AA384E005D2551 /* SVVoteResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B9C75A21AA384E005D2551 /* SVVoteResultViewController.swift */; };
 		40B9C75D21AB2B26005D2551 /* SVVoteResultViewResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B9C75C21AB2B26005D2551 /* SVVoteResultViewResultTableViewCell.swift */; };
+		40B9C76121B5019F005D2551 /* SVAboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B9C76021B5019F005D2551 /* SVAboutViewController.swift */; };
 		6FC3187B3972A7E6705C4D4E /* libPods-SimpleVote.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E6964864C7E4C41575685AF2 /* libPods-SimpleVote.a */; };
 /* End PBXBuildFile section */
 
@@ -51,6 +52,7 @@
 		40B9C75821A88D9A005D2551 /* SVBLEPeripheralManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVBLEPeripheralManager.swift; sourceTree = "<group>"; };
 		40B9C75A21AA384E005D2551 /* SVVoteResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVVoteResultViewController.swift; sourceTree = "<group>"; };
 		40B9C75C21AB2B26005D2551 /* SVVoteResultViewResultTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVVoteResultViewResultTableViewCell.swift; sourceTree = "<group>"; };
+		40B9C76021B5019F005D2551 /* SVAboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVAboutViewController.swift; sourceTree = "<group>"; };
 		59B226BF5493DC1669E49586 /* Pods-SimpleVote.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleVote.release.xcconfig"; path = "Pods/Target Support Files/Pods-SimpleVote/Pods-SimpleVote.release.xcconfig"; sourceTree = "<group>"; };
 		E6964864C7E4C41575685AF2 /* libPods-SimpleVote.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SimpleVote.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE5AD6798F5041BC633B0869 /* Pods-SimpleVote.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleVote.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SimpleVote/Pods-SimpleVote.debug.xcconfig"; sourceTree = "<group>"; };
@@ -89,6 +91,7 @@
 			children = (
 				402AEC57218E37280099E284 /* SVMainTabbarController.swift */,
 				402AEC5B218E3E810099E284 /* SVStartVotingViewController.swift */,
+				40B9C76021B5019F005D2551 /* SVAboutViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -292,6 +295,7 @@
 				4097A7A0217E36D500E6AEB3 /* AppDelegate.swift in Sources */,
 				40B9C75D21AB2B26005D2551 /* SVVoteResultViewResultTableViewCell.swift in Sources */,
 				40B9C73421A1FB6C005D2551 /* SVVotePrepViewController.swift in Sources */,
+				40B9C76121B5019F005D2551 /* SVAboutViewController.swift in Sources */,
 				40B9C75721A88D57005D2551 /* SVBLECentralManager.swift in Sources */,
 				40B9C75921A88D9A005D2551 /* SVBLEPeripheralManager.swift in Sources */,
 				4061D39A21977E04001B6F72 /* SVVoteViewDetailsTableViewCell.swift in Sources */,
